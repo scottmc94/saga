@@ -1,13 +1,11 @@
 'use strict'
 
 const calcbtn = document.getElementById("calc");
-
 calcbtn.addEventListener("click", getbattle);
 
-const prntcbtn = document.getElementById("prnt");
-
+const prntbtn = document.getElementById("prnt");
 prntbtn.addEventListener("click", prntbattle);
-
+document.getElementById('prnt').style.visibility = 'hidden';
 
 
 function getRandomInt(max) {
@@ -43,7 +41,7 @@ function getbattle() {
     var vpic = ""
 
 
-
+    document.getElementById('prnt').style.visibility = 'visible';
     const scenery = [" ", "Frontier Region", "Marshy Country", "Bleak Moor", "Rough Ground", "Unknown Lands", "Uplands"];
     const deploy = [" ", "Refused Flank", "Meeting Encounter", "March Column", "Vanguard", "Pincer Attack ", "Confusion"];
     const gamelength = [" ", "Until Dusk", "Under Pressure", "Regicide", "Unknown Length", "Pitched Battle ", "Cautious"];
