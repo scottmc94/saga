@@ -94,9 +94,12 @@ function getbattle() {
     document.getElementById("ddiv").innerHTML = "";
 
     var bt = `<a href="https://scottmc.freeshell.org/saga/index.html?${battletime}">https://scottmc.freeshell.org/saga/index.html?${battletime}</a>`
+    bt1 = `https://scottmc.freeshell.org/saga/index.html?${battletime}`;
 
 
     document.getElementById("cddiv").innerHTML = bt;
+    document.getElementById('cp1').style.visibility = 'visible';
+    document.getElementById("version").innerHTML = version;
     document.getElementById("sdiv").appendChild(simg);
     document.getElementById("sdiv").appendChild(dimg);
     document.getElementById("sdiv").appendChild(gimg);
@@ -106,6 +109,11 @@ function getbattle() {
 
 
 
+}
+
+
+function cpbattle(){
+    navigator.clipboard.writeText(bt1)     
 }
 
 function somethingswrong() {
@@ -140,9 +148,9 @@ var D = getRandomInt(6)
 var G = getRandomInt(6)
 var R = getRandomInt(6)
 var V = getRandomInt(6)
+var version = "20230415.3"
+var bt1 = ""
 
-
-document.getElementById("version").innerHTML = "20230415.1";
 
 const calcbtn = document.getElementById("calc");
 calcbtn.addEventListener("click", getbattle);
@@ -150,6 +158,11 @@ calcbtn.addEventListener("click", getbattle);
 const prntbtn = document.getElementById("prnt");
 prntbtn.addEventListener("click", prntbattle);
 document.getElementById('prnt').style.visibility = 'hidden';
+
+const cpbtn = document.getElementById("cp1");
+cpbtn.addEventListener("click", cpbattle);
+document.getElementById('cp1').style.visibility = 'hidden';
+
 
 var parm = GetURLParameter("code");
     if (allgood() ) {
