@@ -1,12 +1,24 @@
 'use strict'
 
-const calcbtn = document.getElementById("calc");
-calcbtn.addEventListener("click", getbattle);
+function GetURLParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+        }
+    }
+}
 
-const prntbtn = document.getElementById("prnt");
-prntbtn.addEventListener("click", prntbattle);
-document.getElementById('prnt').style.visibility = 'hidden';
-
+function processcode(p) {
+    S = p[0]
+    D = p[1]
+    G = p[2]
+    R = p[3]
+    V = p[4]
+    getbattle()
+}
 
 function getRandomInt(max) {
     return Math.floor((Math.random() * max) + 1);
@@ -20,6 +32,7 @@ function prntbattle() {
 
 function getbattle() {
 
+
     /*
     S# = Scenery
     D# = Deployment
@@ -29,11 +42,7 @@ function getbattle() {
     ie: S1.jpg, R5.jpg
     */
 
-    var S = getRandomInt(6)
-    var D = getRandomInt(6)
-    var G = getRandomInt(6)
-    var R = getRandomInt(6)
-    var V = getRandomInt(6)
+    somethingswrong();
     var spic = ""
     var dpic = ""
     var gpic = ""
@@ -41,6 +50,7 @@ function getbattle() {
     var vpic = ""
 
     document.getElementById('prnt').style.visibility = 'visible';
+    //console.log(document.getElementById('prnt').style.visibility);
     const scenery = [" ", "Frontier Region", "Marshy Country", "Bleak Moor", "Rough Ground", "Unknown Lands", "Uplands"];
     const deploy = [" ", "Refused Flank", "Meeting Encounter", "March Column", "Vanguard", "Pincer Attack ", "Confusion"];
     const gamelength = [" ", "Until Dusk", "Under Pressure", "Regicide", "Unknown Length", "Pitched Battle ", "Cautious"];
@@ -75,7 +85,7 @@ function getbattle() {
     vimg.src = imgUrl;
 
     var battletime = ""
-    var battletime = battletime.concat("code=",S,D,G,R,V);
+    var battletime = battletime.concat("code=", S, D, G, R, V);
 
 
 
@@ -83,7 +93,10 @@ function getbattle() {
     document.getElementById("sdiv").innerHTML = "";
     document.getElementById("ddiv").innerHTML = "";
 
-    document.getElementById("cddiv").innerHTML = battletime;
+    var bt = `<a href="https://scottmc.freeshell.org/saga/index.html?${battletime}">https://scottmc.freeshell.org/saga/index.html?${battletime}</a>`
+
+
+    document.getElementById("cddiv").innerHTML = bt;
     document.getElementById("sdiv").appendChild(simg);
     document.getElementById("sdiv").appendChild(dimg);
     document.getElementById("sdiv").appendChild(gimg);
@@ -94,3 +107,58 @@ function getbattle() {
 
 
 }
+
+function somethingswrong() {
+    if (parm === undefined) {
+        S = getRandomInt(6)
+        D = getRandomInt(6)
+        G = getRandomInt(6)
+        R = getRandomInt(6)
+        V = getRandomInt(6)
+
+    } else {
+        if (!allgood()) {
+    document.getElementById('calc').style.visibility = 'hidden';
+    document.getElementById("regfailed").innerHTML = `Unable to read parameter,<a href="https://scottmc.freeshell.org/saga/">Click here</a>`
+    }}
+
+}
+
+function allgood() {
+
+    var regex =/[1-6][1-6][1-6][1-6][1-6]/
+    var result = regex.test(parm);
+    console.log(`regex test = ${result}`);
+    return result
+    }
+
+
+// Main
+
+var S = getRandomInt(6)
+var D = getRandomInt(6)
+var G = getRandomInt(6)
+var R = getRandomInt(6)
+var V = getRandomInt(6)
+
+
+document.getElementById("version").innerHTML = "20230415.1";
+
+const calcbtn = document.getElementById("calc");
+calcbtn.addEventListener("click", getbattle);
+
+const prntbtn = document.getElementById("prnt");
+prntbtn.addEventListener("click", prntbattle);
+document.getElementById('prnt').style.visibility = 'hidden';
+
+var parm = GetURLParameter("code");
+    if (allgood() ) {
+        document.getElementById('calc').style.visibility = 'hidden';
+        console.log(`all good ${parm}`);
+        processcode(parm);
+    } else {
+    somethingswrong();
+}
+
+
+
