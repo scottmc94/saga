@@ -40,7 +40,6 @@ function getbattle() {
     var rpic = ""
     var vpic = ""
 
-
     document.getElementById('prnt').style.visibility = 'visible';
     const scenery = [" ", "Frontier Region", "Marshy Country", "Bleak Moor", "Rough Ground", "Unknown Lands", "Uplands"];
     const deploy = [" ", "Refused Flank", "Meeting Encounter", "March Column", "Vanguard", "Pincer Attack ", "Confusion"];
@@ -75,19 +74,16 @@ function getbattle() {
     var vimg = document.createElement('img');
     vimg.src = imgUrl;
 
+    var battletime = ""
+    var battletime = battletime.concat("code=",S,D,G,R,V);
 
 
 
-
-    //   var battletime = ""
-    //   var battletime = battletime.concat(S,"=",scenery[S]," ",D,"=",deploy[D]," ",G,"=",gamelength[G]," ",R,"=",specrule[R]," ",V,"=",victory[V])
-
-
-
-    //const sdiv = document.querySelector("sdiv");
-    //sdiv.appendChild(img);
+    document.getElementById("cddiv").innerHTML = "";
     document.getElementById("sdiv").innerHTML = "";
     document.getElementById("ddiv").innerHTML = "";
+
+    document.getElementById("cddiv").innerHTML = battletime;
     document.getElementById("sdiv").appendChild(simg);
     document.getElementById("sdiv").appendChild(dimg);
     document.getElementById("sdiv").appendChild(gimg);
@@ -97,9 +93,4 @@ function getbattle() {
 
 
 
-
-
-    const div = document.querySelector("div");
-    div.innerHTML = "";
-    div.appendChild(document.createTextNode(battletime));
 }
