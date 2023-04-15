@@ -27,6 +27,7 @@ function getRandomInt(max) {
 function prntbattle() {
     document.getElementById('prnt').style.visibility = 'hidden';
     document.getElementById('calc').style.visibility = 'hidden';
+    document.getElementById('cp1').style.visibility = 'hidden';
     window.print()
 }
 
